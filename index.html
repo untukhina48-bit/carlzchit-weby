@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CARLCHITZ SHOP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; min-height: 100vh; color: #fff; padding: 20px; overflow-x: hidden; background: #0a0a1a; }
+
+        /* BACKGROUND ANIMASI */
+        .bg-animate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; }
+        .bg-layer-1 { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 40%, rgba(120,0,255,0.25), transparent 50%), radial-gradient(circle at 70% 60%, rgba(255,0,100,0.2), transparent 50%), radial-gradient(circle at 50% 80%, rgba(0,200,255,0.1), transparent 40%); animation: floatGradient 20s ease-in-out infinite alternate; }
+        @keyframes floatGradient { 0% { transform: translate(0,0) rotate(0deg); } 100% { transform: translate(-5%,-4%) rotate(-2deg); } }
+        .bg-layer-2 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.3), transparent), radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.2), transparent), radial-gradient(2px 2px at 60% 20%, rgba(255,255,255,0.3), transparent), radial-gradient(2px 2px at 80% 80%, rgba(255,255,255,0.2), transparent); background-size: 200px 200px; animation: twinkle 8s ease-in-out infinite alternate; }
+        @keyframes twinkle { 0% { opacity: 0.3; } 100% { opacity: 0.8; } }
+        .bg-layer-3 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px); animation: scanLine 12s linear infinite; }
+        @keyframes scanLine { 0% { transform: translateY(0); } 100% { transform: translateY(41px); } }
+
+        .container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; }
+
+        /* HEADER */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
+        .logo { font-family: 'Orbitron', monospace; font-weight: 900; font-size: 28px; background: linear-gradient(90deg, #f7971e, #ffd200); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+        .logo i { -webkit-text-fill-color: initial; color: #ffd200; margin-right: 8px; }
+        .header-right .whatsapp-btn { background: #25D366; color: #fff; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .header-right .whatsapp-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(37,211,102,0.3); }
+
+        /* SECTION TITLE */
+        .section-title { font-family: 'Orbitron', monospace; font-size: 24px; color: #ffd200; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,215,0,0.1); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .section-title i { font-size: 28px; }
+        .section-title .badge { font-size: 12px; background: rgba(255,215,0,0.1); padding: 2px 12px; border-radius: 30px; color: #ffd200; font-family: 'Poppins', sans-serif; }
+
+        /* GRID */
+        .cheat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; margin-bottom: 20px; }
+        .cheat-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border-radius: 20px; padding: 25px; border: 1px solid rgba(255,255,255,0.08); transition: 0.4s; box-shadow: 0 5px 30px rgba(0,0,0,0.2); }
+        .cheat-card:hover { transform: translateY(-8px); border-color: rgba(247,151,30,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .cheat-card .cheat-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+        .cheat-card .cheat-name { font-size: 20px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .cheat-card .cheat-name i { color: #ffd200; }
+        .cheat-card .cheat-badge { font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 30px; background: rgba(0,255,136,0.12); color: #00ff88; border: 1px solid rgba(0,255,136,0.15); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+        .cheat-card .cheat-desc { color: rgba(255,255,255,0.5); font-size: 13px; margin-bottom: 12px; }
+
+        /* FEATURE GRID CANTIK */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 10px;
+            margin-bottom: 15px;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.04);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .feature-grid::-webkit-scrollbar { width: 3px; }
+        .feature-grid::-webkit-scrollbar-track { background: transparent; }
+        .feature-grid::-webkit-scrollbar-thumb { background: #ffd200; border-radius: 10px; }
+        .feature-grid .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+        .feature-grid .feature-item i { color: #ffd200; font-size: 9px; width: 14px; text-align: center; }
+        .feature-grid .feature-item .tag { background: rgba(255,215,0,0.08); padding: 0 8px; border-radius: 20px; font-size: 9px; color: #ffd200; margin-left: auto; white-space: nowrap; }
+        .feature-group-title { font-size: 10px; font-weight: 600; color: #ffd200; text-transform: uppercase; letter-spacing: 1px; grid-column: 1 / -1; margin-top: 2px; padding-bottom: 2px; border-bottom: 1px solid rgba(255,215,0,0.05); }
+
+        /* PRICE LIST */
+        .price-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 18px; }
+        .price-item { display: flex; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 10px; font-size: 13px; cursor: pointer; border: 1px solid transparent; transition: 0.3s; }
+        .price-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(247,151,30,0.2); }
+        .price-item .duration { color: rgba(255,255,255,0.6); }
+        .price-item .price { color: #ffd200; font-weight: 600; }
+        .price-item.selected { border-color: #ffd200; background: rgba(247,151,30,0.12); }
+
+        /* BUTTON BUY */
+        .btn-buy { width: 100%; padding: 14px; background: linear-gradient(135deg, #25D366, #128C7E); border: none; border-radius: 14px; color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Poppins', sans-serif; }
+        .btn-buy:hover { transform: scale(1.02); box-shadow: 0 10px 40px rgba(37,211,102,0.3); }
+        .btn-buy:active { transform: scale(0.96); }
+
+        /* NOTED BOX */
+        .noted-box { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.08); border-radius: 16px; padding: 16px 20px; margin: 10px 0 20px; color: rgba(255,255,255,0.5); font-size: 13px; }
+        .noted-box i { color: #ffd200; margin-right: 10px; }
+
+        /* FOOTER */
+        .footer { text-align: center; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.03); margin-top: 20px; }
+        .footer .social-link { display: inline-block; margin-top: 10px; color: rgba(255,255,255,0.3); text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .footer .social-link:hover { color: #fff; }
+        .footer .social-link i { margin-right: 8px; color: #ff0050; }
+
+        /* TOAST */
+        .toast { position: fixed; bottom: 30px; right: 30px; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); padding: 16px 28px; border-radius: 16px; border-left: 4px solid #25D366; color: #fff; font-size: 14px; transform: translateY(120px); opacity: 0; transition: 0.5s cubic-bezier(0.16,1,0.3,1); z-index: 999; }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast i { margin-right: 12px; color: #25D366; }
+
+        /* POPUP NAMA BUYER */
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+        .popup-overlay.show { display: flex; }
+        .popup-box { background: #1a1a2e; padding: 35px 25px; border-radius: 30px; max-width: 420px; width: 100%; border: 1px solid rgba(255,215,0,0.15); box-shadow: 0 30px 80px rgba(0,0,0,0.6); animation: popIn 0.4s cubic-bezier(0.16,1,0.3,1); }
+        @keyframes popIn { 0% { transform: scale(0.8) translateY(30px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
+        .popup-box h2 { color: #ffd200; font-family: 'Orbitron', monospace; font-size: 22px; margin-bottom: 15px; text-align: center; }
+        .popup-box .popup-info { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 15px; text-align: center; line-height: 1.6; }
+        .popup-box .popup-info strong { color: #fff; }
+        .popup-box input { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; color: #fff; font-size: 15px; font-family: 'Poppins', sans-serif; outline: none; transition: 0.3s; margin-bottom: 15px; }
+        .popup-box input:focus { border-color: #ffd200; background: rgba(255,255,255,0.08); }
+        .popup-box input::placeholder { color: rgba(255,255,255,0.2); }
+        .popup-box .btn-group { display: flex; gap: 12px; }
+        .popup-box .btn-group button { flex: 1; padding: 14px; border: none; border-radius: 14px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; }
+        .popup-box .btn-group .btn-confirm { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; }
+        .popup-box .btn-group .btn-confirm:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(37,211,102,0.3); }
+        .popup-box .btn-group .btn-cancel { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.05); }
+        .popup-box .btn-group .btn-cancel:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        @media (max-width: 768px) { .header { flex-direction: column; text-align: center; } .cheat-grid { grid-template-columns: 1fr; } .price-list { grid-template-columns: 1fr 1fr; } .popup-box { padding: 25px 20px; } }
+        @media (max-width: 480px) { .logo { font-size: 22px; } .price-list { grid-template-columns: 1fr; } .feature-grid { grid-template-columns: 1fr; max-height: 150px; } }
+    </style>
+</head>
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="bg-animate">
+        <div class="bg-layer-1"></div>
+        <div class="bg-layer-2"></div>
+        <div class="bg-layer-3"></div>
+    </div>
+
+    <!-- POPUP NAMA BUYER -->
+    <div class="popup-overlay" id="popupBuyer">
+        <div class="popup-box">
+            <h2><i class="fas fa-user"></i> MASUKKAN NAMA</h2>
+            <div class="popup-info" id="popupInfo">
+                Sila masukkan <strong>nama pembeli</strong> untuk proses pembelian.<br>
+                <span style="font-size:12px; color:rgba(255,255,255,0.3);">Masa & tarikh akan direkodkan secara automatik.</span>
+            </div>
+            <input type="text" id="buyerNameInput" placeholder="Contoh: Ahmad Bin Ali" />
+            <div class="btn-group">
+                <button class="btn-cancel" id="cancelBuyerBtn">Batal</button>
+                <button class="btn-confirm" id="confirmBuyerBtn"><i class="fas fa-check"></i> Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Berjaya!</span></div>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo"><i class="fas fa-skull"></i> CARLCHITZ</div>
+            <div class="header-right">
+                <a href="https://wa.me/60147985520" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </header>
+
+        <!-- ======================================== -->
+        <!-- CHEAT GRID (SEMUA CHEAT DENGAN FILTUR) -->
+        <!-- ======================================== -->
+        <div class="cheat-grid">
+
+            <!-- 1. SILENT CHEAT -->
+            <div class="cheat-card" data-cheat="SILENT CHEAT">
+                <div class="cheat-header">
+                    <div class="cheat-name"><i class="fas fa-eye-slash"></i> SILENT CHEAT</div>
+                    <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+                </div>
+                <div class="cheat-desc">Cheat premium dengan silent aim & esp.</div>
+                <div class="feature-grid">
+                    <div class="feature-group-title">🔫 AIM</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Lock Target <span class="tag">LOCK</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Silent Aim <span class="tag">SILENT</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Silent Aim Body <span class="tag">BODY</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Aim Magnet <span class="tag">MAGNET</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Adjust FOV <span class="tag">FOV</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Headshot Rate <span class="tag">HS%</span></div>
+                    <div class="feature-group-title">👁️ ESP</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> ESP Master <span class="tag">PRO</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Box <span class="tag">BOX</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Line <span class="tag">LINE</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Health <span class="tag">HP</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Name <span class="tag">NAME</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Distance <span class="tag">DIST</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> FOV Circle <span class="tag">CIRCLE</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Enemy Counter <span class="tag">COUNT</span></div>
+                    <div class="feature-group-title">⚡ MISC</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Speed <span class="tag">SPD</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Fly <span class="tag">FLY</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Downkill <span class="tag">DK</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Spinbot <span class="tag">SPIN</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Noreload <span class="tag">NR</span></div>
+                </div>
+                <div class="price-list">
+                    <div class="price-item" data-dur="1 Hari" data-price="6"><span class="duration">1 Hari</span><span class="price">RM6</span></div>
+                    <div class="price-item" data-dur="3 Hari" data-price="10"><span class="duration">3 Hari</span><span class="price">RM10</span></div>
+                </div>
+                <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+            </div>
+
+            <!-- 2. FLUORITE (FF) -->
+            <div class="cheat-card" data-cheat="FLUORITE IOS FF/ML">
+                <div class="cheat-header">
+                    <div class="cheat-name"><i class="fas fa-fire"></i> FLUORITE FF</div>
+                    <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+                </div>
+                <div class="cheat-desc">Cheat premium untuk Free Fire.</div>
+                <div class="feature-grid">
+                    <div class="feature-group-title">🎯 AIM</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Smooth ESP <span class="tag">SMOOTH</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Customizable Aimbot <span class="tag">CUSTOM</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Silent Aimbot <span class="tag">SILENT</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Vectored Aimbot <span class="tag">VECTOR</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Field of View (FOV) <span class="tag">FOV</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Max Distance Limit <span class="tag">DIST</span></div>
+                    <div class="feature-group-title">⚙️ SETTINGS</div>
+                    <div class="feature-item"><i class="fas fa-check"></i> 120 FPS <span class="tag">FPS</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Ignore Knocked Enemies <span class="tag">IGNORE</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Guest Account Reset <span class="tag">RESET</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Stream Hide / Streamproof <span class="tag">STREAM</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Full Anti-Cheat/Blacklist Bypass <span class="tag">BYPASS</span></div>
+                    <div class="feature-item"><i class="fas fa-check"></i> Save/Load Setting <span class="tag">SAVE</span></div>
+                </div>
+                <div class="price-list">
+                    <div class="price-item" data-dur="1 Hari" data-price="13"><span class="duration">1 Hari</span><span class="price">RM13</span></div>
+                    <div class="price-item" data-dur="7 Hari" data-price="38"><span class="duration">7 Hari</span><span class="price">RM38</span></div>
+                    <div class="price-item" data-dur="30 Hari" data-price="90"><span class="duration">30 Hari</span><span class="price">RM90</span></div>
+                    <div class="price-item" data-dur="GBOX" data-price="34"><span class="duration">GBOX (1 Tahun)</span><span class="price">RM34</span></div>
+                </div>
+                <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+            </div>
+
+                            <i class="fas fa-gamepad"></i> FLUORITE ML
+            </div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Cheat premium untuk Mobile Legends.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">⚔️ COMBAT</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Auto Retry <span class="tag">RETRY</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot <span class="tag">AIM</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Room Info <span class="tag">ROOM</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> View CD Skill Musuh <span class="tag">CD SKILL</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> View CD Spell Musuh <span class="tag">CD SPELL</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> View Darah Musuh <span class="tag">HP</span></div>
+            <div class="feature-group-title">🗺️ MAP & ESP</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Maps Hack <span class="tag">MAP</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Line <span class="tag">LINE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> View Cooldown Musuh <span class="tag">CD</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Drone Camera <span class="tag">DRONE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Streamproof <span class="tag">STREAM</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Full Bypass / Anti Cheat <span class="tag">BYPASS</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Save Load Fitur <span class="tag">SAVE</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="13"><span class="duration">1 Hari</span><span class="price">RM13</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="38"><span class="duration">7 Hari</span><span class="price">RM38</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="90"><span class="duration">30 Hari</span><span class="price">RM90</span></div>
+            <div class="price-item" data-dur="GBOX" data-price="34"><span class="duration">GBOX (1 Tahun)</span><span class="price">RM34</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div>
+
+    <!-- 4. DRIP CLIENT -->
+    <div class="cheat-card" data-cheat="KEY DRIP CLIENT">
+        <div class="cheat-header">
+            <div class="cheat-name"><i class="fas fa-droplet"></i> DRIP CLIENT</div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Aimbot & ESP premium anti-detect.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">🎯 AIM</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Enable Functions <span class="tag">ON</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Legit <span class="tag">LEGIT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Rage <span class="tag">RAGE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Shoulder <span class="tag">SHOULDER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Silent Aim / Aim Silent <span class="tag">SILENT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Silent Kill <span class="tag">KILL</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Magnetic / Aim Magnet <span class="tag">MAGNET</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Collider <span class="tag">COLLIDER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> HS Config: Head, Neck, Body <span class="tag">HS</span></div>
+            <div class="feature-group-title">👁️ ESP & MISC</div>
+            <div class="feature-item"><i class="fas fa-check"></i> ALL ESP <span class="tag">ESP</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ALL MISC <span class="tag">MISC</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ALL PLAYER <span class="tag">PLAYER</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="5"><span class="duration">1 Hari</span><span class="price">RM5</span></div>
+            <div class="price-item" data-dur="3 Hari" data-price="7"><span class="duration">3 Hari</span><span class="price">RM7</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="13"><span class="duration">7 Hari</span><span class="price">RM13</span></div>
+            <div class="price-item" data-dur="15 Hari" data-price="19"><span class="duration">15 Hari</span><span class="price">RM19</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="34"><span class="duration">30 Hari</span><span class="price">RM34</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div>
+
+    <!-- 5. DRIP ROOT -->
+    <div class="cheat-card" data-cheat="DRIP ROOT">
+        <div class="cheat-header">
+            <div class="cheat-name"><i class="fas fa-crown"></i> DRIP ROOT</div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Root access & full control cheat.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">🎯 AIM</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Enable Functions <span class="tag">ON</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Legit <span class="tag">LEGIT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Rage <span class="tag">RAGE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Shoulder <span class="tag">SHOULDER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Silent Aim / Aim Silent <span class="tag">SILENT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Silent Kill <span class="tag">KILL</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Magnetic / Aim Magnet <span class="tag">MAGNET</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Collider <span class="tag">COLLIDER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> HS Config: Head, Neck, Body <span class="tag">HS</span></div>
+            <div class="feature-group-title">👁️ ESP & MISC</div>
+            <div class="feature-item"><i class="fas fa-check"></i> ALL ESP <span class="tag">ESP</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ALL MISC <span class="tag">MISC</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ALL PLAYER <span class="tag">PLAYER</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="10"><span class="duration">1 Hari</span><span class="price">RM10</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="19"><span class="duration">7 Hari</span><span class="price">RM19</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="45"><span class="duration">30 Hari</span><span class="price">RM45</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div>
+
+    <!-- 6. PATO TEAM -->
+    <div class="cheat-card" data-cheat="CHEAT PATO TEAM ANDRO">
+        <div class="cheat-header">
+            <div class="cheat-name"><i class="fas fa-users"></i> PATO TEAM</div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Team hack & auto-respawn untuk Android.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">🎯 AIM</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Legit <span class="tag">LEGIT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Silent <span class="tag">SILENT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Magnet <span class="tag">MAGNET</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Safe <span class="tag">SAFE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Brutal <span class="tag">BRUTAL</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Spin Bot <span class="tag">SPIN</span></div>
+            <div class="feature-group-title">👁️ ESP</div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Line <span class="tag">LINE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Health <span class="tag">HP</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Skeleton <span class="tag">SKELETON</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Box DLL <span class="tag">BOX</span></div>
+            <div class="feature-group-title">⚡ MISC</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Optimize Low Device <span class="tag">OPT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Hidden Icon <span class="tag">HIDE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Speed Hack <span class="tag">SPD</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Ghost Hack <span class="tag">GHOST</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="3 Hari" data-price="12"><span class="duration">3 Hari</span><span class="price">RM12</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="22"><span class="duration">7 Hari</span><span class="price">RM22</span></div>
+            <div class="price-item" data-dur="15 Hari" data-price="32"><span class="duration">15 Hari</span><span class="price">RM32</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="54"><span class="duration">30 Hari</span><span class="price">RM54</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div>
+
+    <!-- 7. BR MOODS -->
+    <div class="cheat-card" data-cheat="BR MOODS">
+        <div class="cheat-header">
+            <div class="cheat-name"><i class="fas fa-crosshairs"></i> BR MOODS</div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Battle Royale mod — KHUSUS ROOT ONLY.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">🎯 AIM</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Silent <span class="tag">SILENT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Magnet <span class="tag">MAGNET</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Rage <span class="tag">RAGE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim FOV <span class="tag">FOV</span></div>
+            <div class="feature-group-title">👁️ ESP</div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Line <span class="tag">LINE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Health <span class="tag">HP</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Box <span class="tag">BOX</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Skeleton <span class="tag">SKELETON</span></div>
+            <div class="feature-group-title">⚡ MISC</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Speed Hack <span class="tag">SPD</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Ghost Player <span class="tag">GHOST</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Teleport 8M <span class="tag">TP</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="7"><span class="duration">1 Hari</span><span class="price">RM7</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="17"><span class="duration">7 Hari</span><span class="price">RM17</span></div>
+            <div class="price-item" data-dur="15 Hari" data-price="26"><span class="duration">15 Hari</span><span class="price">RM26</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="48"><span class="duration">30 Hari</span><span class="price">RM48</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div>
+
+    <!-- 8. HG-APKMOOD -->
+    <div class="cheat-card" data-cheat="HG-APKMOOD">
+        <div class="cheat-header">
+            <div class="cheat-name"><i class="fas fa-bullseye"></i> HG-APKMOOD</div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Headshot guarantee & damage multiplier.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">👁️ ESP</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Health <span class="tag">HP</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Name <span class="tag">NAME</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Line <span class="tag">LINE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Box <span class="tag">BOX</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Player <span class="tag">PLAYER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Crokg <span class="tag">CROKG</span></div>
+            <div class="feature-group-title">🎯 COMBAT & AIMBOT</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Silent <span class="tag">SILENT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Collider <span class="tag">COLLIDER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Magnet <span class="tag">MAGNET</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Type: Strion Top <span class="tag">TOP</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="9"><span class="duration">1 Hari</span><span class="price">RM9</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="17"><span class="duration">7 Hari</span><span class="price">RM17</span></div>
+            <div class="price-item" data-dur="10 Hari" data-price="23"><span class="duration">10 Hari</span><span class="price">RM23</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="44"><span class="duration">30 Hari</span><span class="price">RM44</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div>
+
+    <!-- 9. PRIME HOOK -->
+    <div class="cheat-card" data-cheat="PRIME HOOK">
+        <div class="cheat-header">
+            <div class="cheat-name"><i class="fas fa-hook"></i> PRIME HOOK</div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Premium injector dengan anti-ban.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">👁️ ESP</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Health <span class="tag">HP</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Name <span class="tag">NAME</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Line <span class="tag">LINE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Show Box <span class="tag">BOX</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Player <span class="tag">PLAYER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> ESP Crokg <span class="tag">CROKG</span></div>
+            <div class="feature-group-title">🎯 COMBAT & AIMBOT</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Silent <span class="tag">SILENT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aimbot Collider <span class="tag">COLLIDER</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Magnet <span class="tag">MAGNET</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="5"><span class="duration">1 Hari</span><span class="price">RM5</span></div>
+            <div class="price-item" data-dur="3 Hari" data-price="9"><span class="duration">3 Hari</span><span class="price">RM9</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="15"><span class="duration">7 Hari</span><span class="price">RM15</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- INJECTOR -->
+<!-- ======================================== -->
+<div style="margin-top:50px;">
+    <div style="font-family: 'Orbitron', monospace; font-size: 24px; color: #ffd200; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,215,0,0.1); display: flex; align-items: center; gap: 12px;">
+        <i class="fas fa-syringe"></i> INJECTOR <span style="font-size:12px; background:rgba(255,215,0,0.1); padding:2px 12px; border-radius:30px; color:#ffd200; font-family:'Poppins',sans-serif;">IOS & ANDRO</span>
+    </div>
+
+    <div class="noted-box">
+        <i class="fas fa-info-circle"></i> <strong>Noted!</strong> Ini bukan panel ataupun cheat. Ini hanyalah injector untuk memudahkan headshot atau melicinkan layar.
+    </div>
+
+    <div class="cheat-grid">
+        <!-- INJECTOR IOS -->
+        <div class="cheat-card" data-cheat="INJECTOR IOS">
+            <div class="cheat-header">
+                <div class="cheat-name"><i class="fab fa-apple"></i> INJECTOR IOS</div>
+                <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+            </div>
+            <div class="cheat-desc">Injector untuk iOS — memudahkan headshot & kelancaran.</div>
+            <div class="feature-grid">
+                <div class="feature-group-title">🎯 AIM</div>
+                <div class="feature-item"><i class="fas fa-check"></i> Aim Head <span class="tag">HS</span></div>
+                <div class="feature-item"><i class="fas fa-check"></i> Aim Trick <span class="tag">PRO</span></div>
+                         <!-- Sambungan feature-grid Injector IOS -->
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Tracking Head <span class="tag">LOCK</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Aim Assist <span class="tag">AUTO</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Config Head <span class="tag">CUSTOM</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Easy Head <span class="tag">EZ</span></div>
+            <div class="feature-group-title">⚡ PERFORMANCE</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Drag Shoot <span class="tag">DRAG</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Boost FPS <span class="tag">FPS</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Adaptive Sensitivity <span class="tag">ADAPT</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Config Sensitivity <span class="tag">SENS</span></div>
+        </div> <!-- tutup feature-grid -->
+
+        <!-- Price List Injector IOS -->
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="3"><span class="duration">1 Hari</span><span class="price">RM3</span></div>
+            <div class="price-item" data-dur="3 Hari" data-price="5"><span class="duration">3 Hari</span><span class="price">RM5</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="7"><span class="duration">7 Hari</span><span class="price">RM7</span></div>
+            <div class="price-item" data-dur="15 Hari" data-price="12"><span class="duration">15 Hari</span><span class="price">RM12</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="16"><span class="duration">30 Hari</span><span class="price">RM16</span></div>
+            <div class="price-item" data-dur="60 Hari" data-price="20"><span class="duration">60 Hari</span><span class="price">RM20</span></div>
+            <div class="price-item" data-dur="100 Hari" data-price="23"><span class="duration">100 Hari</span><span class="price">RM23</span></div>
+            <div class="price-item" data-dur="365 Hari" data-price="25"><span class="duration">365 Hari</span><span class="price">RM25</span></div>
+            <div class="price-item" data-dur="PERMANENT" data-price="30"><span class="duration">Permanent</span><span class="price">RM30</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div> <!-- tutup cheat-card Injector IOS -->
+
+    <!-- ======================================== -->
+    <!-- INJECTOR ANDRO -->
+    <!-- ======================================== -->
+    <div class="cheat-card" data-cheat="INJECTOR ANDRO">
+        <div class="cheat-header">
+            <div class="cheat-name"><i class="fab fa-android"></i> INJECTOR ANDRO</div>
+            <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+        </div>
+        <div class="cheat-desc">Injector untuk Android — optimize & headshot assist.</div>
+        <div class="feature-grid">
+            <div class="feature-group-title">⚙️ OPTIMIZE</div>
+            <div class="feature-item"><i class="fas fa-check"></i> Optimize Gophone <span class="tag">PHONE</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Head Tracking Aim <span class="tag">LOCK</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Vertical Drag Assist <span class="tag">DRAG</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Surface Flinger <span class="tag">FLING</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Touch Accelerator <span class="tag">TOUCH</span></div>
+            <div class="feature-item"><i class="fas fa-check"></i> Mouse Tweaks <span class="tag">MOUSE</span></div>
+        </div>
+        <div class="price-list">
+            <div class="price-item" data-dur="1 Hari" data-price="3"><span class="duration">1 Hari</span><span class="price">RM3</span></div>
+            <div class="price-item" data-dur="3 Hari" data-price="5"><span class="duration">3 Hari</span><span class="price">RM5</span></div>
+            <div class="price-item" data-dur="7 Hari" data-price="7"><span class="duration">7 Hari</span><span class="price">RM7</span></div>
+            <div class="price-item" data-dur="15 Hari" data-price="12"><span class="duration">15 Hari</span><span class="price">RM12</span></div>
+            <div class="price-item" data-dur="30 Hari" data-price="16"><span class="duration">30 Hari</span><span class="price">RM16</span></div>
+            <div class="price-item" data-dur="60 Hari" data-price="20"><span class="duration">60 Hari</span><span class="price">RM20</span></div>
+            <div class="price-item" data-dur="100 Hari" data-price="23"><span class="duration">100 Hari</span><span class="price">RM23</span></div>
+            <div class="price-item" data-dur="365 Hari" data-price="25"><span class="duration">365 Hari</span><span class="price">RM25</span></div>
+            <div class="price-item" data-dur="PERMANENT" data-price="30"><span class="duration">Permanent</span><span class="price">RM30</span></div>
+        </div>
+        <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+    </div> <!-- tutup cheat-card Injector ANDRO -->
+</div> <!-- tutup cheat-grid untuk injector -->
+
+<!-- ======================================== -->
+<!-- NEURO AI (EXCLUSIVE) -->
+<!-- ======================================== -->
+<div style="margin-top:50px;">
+    <div style="font-family: 'Orbitron', monospace; font-size: 24px; color: #ffd200; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,215,0,0.1); display: flex; align-items: center; gap: 12px;">
+        <i class="fas fa-brain"></i> NEURO AI <span style="font-size:12px; background:rgba(255,215,0,0.1); padding:2px 12px; border-radius:30px; color:#ffd200; font-family:'Poppins',sans-serif;">EXCLUSIVE</span>
+    </div>
+
+    <div class="cheat-grid">
+        <div class="cheat-card" data-cheat="NEURO AI">
+            <div class="cheat-header">
+                <div class="cheat-name"><i class="fas fa-robot"></i> NEURO AI</div>
+                <span class="cheat-badge"><i class="fas fa-circle" style="font-size:8px;"></i> Ready</span>
+            </div>
+            <div class="cheat-desc">
+                <i class="fas fa-check-circle" style="color:#00ff88; font-size:12px;"></i> For iOS<br>
+                <i class="fas fa-check-circle" style="color:#00ff88; font-size:12px;"></i> No Gbox<br>
+                <i class="fas fa-check-circle" style="color:#00ff88; font-size:12px;"></i> No Scriptable
+            </div>
+            <div class="price-list">
+                <div class="price-item" data-dur="1 Hari" data-price="3"><span class="duration">1 Hari</span><span class="price">RM3</span></div>
+                <div class="price-item" data-dur="3 Hari" data-price="5"><span class="duration">3 Hari</span><span class="price">RM5</span></div>
+                <div class="price-item" data-dur="7 Hari" data-price="7"><span class="duration">7 Hari</span><span class="price">RM7</span></div>
+                <div class="price-item" data-dur="15 Hari" data-price="12"><span class="duration">15 Hari</span><span class="price">RM12</span></div>
+                <div class="price-item" data-dur="30 Hari" data-price="16"><span class="duration">30 Hari</span><span class="price">RM16</span></div>
+                <div class="price-item" data-dur="60 Hari" data-price="20"><span class="duration">60 Hari</span><span class="price">RM20</span></div>
+                <div class="price-item" data-dur="100 Hari" data-price="23"><span class="duration">100 Hari</span><span class="price">RM23</span></div>
+                <div class="price-item" data-dur="365 Hari" data-price="25"><span class="duration">365 Hari</span><span class="price">RM25</span></div>
+                <div class="price-item" data-dur="PERMANENT" data-price="30"><span class="duration">Permanent</span><span class="price">RM30</span></div>
+            </div>
+            <button class="btn-buy"><i class="fab fa-whatsapp"></i> Beli Sekarang</button>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- FOOTER -->
+<!-- ======================================== -->
+<div class="footer">
+    <div style="color: rgba(255,255,255,0.08); font-size: 12px; letter-spacing: 2px;">
+        ⚡ CARLCHITZ SHOP · PREMIUM CHEATS · 2026 ⚡
+    </div>
+    <a href="https://www.tiktok.com/@carlzchitzt" target="_blank" class="social-link">
+        <i class="fab fa-tiktok"></i> @carlzchitzt
+    </a>
+    <br>
+    <span style="color: rgba(255,255,255,0.05); font-size: 11px;">Hubungi WhatsApp: 60147985520</span>
+</div>
+
+</div> <!-- tutup container utama -->
+
+<!-- ======================================== -->
+<!-- POPUP NAMA BUYER (PASTIKAN ADA) -->
+<!-- ======================================== -->
+<div class="popup-overlay" id="popupBuyer">
+    <div class="popup-box">
+        <h2><i class="fas fa-user"></i> MASUKKAN NAMA</h2>
+        <div class="popup-info" id="popupInfo">
+            Sila masukkan <strong>nama pembeli</strong> untuk proses pembelian.<br>
+            <span style="font-size:12px; color:rgba(255,255,255,0.3);">Masa & tarikh akan direkodkan secara automatik.</span>
+        </div>
+        <input type="text" id="buyerNameInput" placeholder="Contoh: Ahmad Bin Ali" />
+        <div class="btn-group">
+            <button class="btn-cancel" id="cancelBuyerBtn">Batal</button>
+            <button class="btn-confirm" id="confirmBuyerBtn"><i class="fas fa-check"></i> Confirm</button>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================== -->
+<!-- TOAST -->
+<!-- ======================================== -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Berjaya!</span></div>
+
+<!-- ======================================== -->
+<!-- JAVASCRIPT -->
+<!-- ======================================== -->
+<script>
+    // ========================================
+    // 1. SELECT PRICE
+    // ========================================
+    document.querySelectorAll('.price-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const parent = this.closest('.price-list');
+            parent.querySelectorAll('.price-item').forEach(p => p.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    // ========================================
+    // 2. POPUP BUYER + WHATSAPP AUTO
+    // ========================================
+    const popup = document.getElementById('popupBuyer');
+    const buyerInput = document.getElementById('buyerNameInput');
+    const confirmBtn = document.getElementById('confirmBuyerBtn');
+    const cancelBtn = document.getElementById('cancelBuyerBtn');
+    const popupInfo = document.getElementById('popupInfo');
+
+    let selectedCheat = '';
+    let selectedDur = '';
+    let selectedPrice = '';
+
+    document.querySelectorAll('.btn-buy').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const card = this.closest('.cheat-card');
+            const cheatName = card.dataset.cheat;
+            const selected = card.querySelector('.price-item.selected');
+
+            if (!selected) {
+                showToast('⚠️ Sila pilih tempoh dahulu!');
+                return;
+            }
+
+            selectedCheat = cheatName;
+            selectedDur = selected.dataset.dur;
+            selectedPrice = selected.dataset.price;
+
+            popupInfo.innerHTML = `
+                Sila masukkan <strong>nama pembeli</strong> untuk proses pembelian.<br>
+                <span style="font-size:13px; color:#ffd200;">
+                    ${cheatName} (${selectedDur}) — RM${selectedPrice}
+                </span>
+            `;
+
+            buyerInput.value = '';
+            popup.classList.add('show');
+        });
+    });
+
+    confirmBtn.addEventListener('click', function() {
+        const name = buyerInput.value.trim();
+        if (!name) {
+            showToast('⚠️ Sila masukkan nama pembeli!');
+            buyerInput.focus();
+            return;
+        }
+
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('ms-MY', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        const timeStr = now.toLocaleTimeString('ms-MY', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
+        const datetime = `${dateStr} ${timeStr}`;
+
+        const phone = '60147985520';
+        const msg = `HAI CARLZCHITZT!%0A%0ASAYA INGIN MEMBELI%0ANAMA: ${name}%0AKATEGORI: ${selectedCheat}%0ATEMPOH: ${selectedDur}%0AHARGA: RM${selectedPrice}%0AMASA PEMBELIAN: ${datetime}%0A%0Asaya berminat untuk membeli%0ASila bantu proses pembelian.`;
+
+        popup.classList.remove('show');
+        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        showToast(`✅ ${name}, pembelian ${selectedCheat} berjaya dihantar ke WhatsApp!`);
+    });
+
+    cancelBtn.addEventListener('click', function() {
+        popup.classList.remove('show');
+        showToast('⏹️ Pembelian dibatalkan');
+    });
+
+    popup.addEventListener('click', function(e) {
+        if (e.target === this) {
+            popup.classList.remove('show');
+            showToast('⏹️ Pembelian dibatalkan');
+        }
+    });
+
+    buyerInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            confirmBtn.click();
+        }
+    });
+
+    // ========================================
+    // 3. TOAST
+    // ========================================
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+    let toastTimer;
+
+    function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // ========================================
+    // 4. AUTO SELECT PRICE PERTAMA
+    // ========================================
+    document.querySelectorAll('.price-item:first-child').forEach(item => item.click());
+
+    console.log('🔥 CARLCHITZ SHOP LOADED!');
+    console.log('✅ Semua cheat + filter lengkap');
+    console.log('✅ Injector + Neuro AI');
+    console.log('✅ Nama Pembeli & Masa Auto');
+</script>
+</body>
+</html>
