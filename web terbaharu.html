@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carlzchitzt — Premium Mods & Cheats</title>
+<style>
+  :root {
+    --bg: #07090d;
+    --panel: #0e1218;
+    --panel-2: #131922;
+    --line: #1e2633;
+    --teks: #e6e9ef;
+    --redup: #8b93a3;
+    --aksen: #00e5b0;
+    --aksen-2: #4f8cff;
+    --emas: #f5c451;
+    --merah: #ff5d6c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--teks);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(0,229,176,.10), transparent 45%),
+      radial-gradient(circle at 85% 100%, rgba(79,140,255,.10), transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(7,9,13,.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+  }
+
+  .logo {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: .5px;
+    background: linear-gradient(90deg, var(--aksen), var(--aksen-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .logo span { font-size: .7em; color: var(--redup); -webkit-text-fill-color: var(--redup); }
+
+  nav.menu { display: flex; gap: 24px; align-items: center; }
+
+  nav.menu a {
+    color: var(--redup);
+    text-decoration: none;
+    font-size: .92rem;
+    font-weight: 500;
+    transition: color .2s;
+  }
+
+  nav.menu a:hover { color: var(--aksen); }
+
+  .cart-btn {
+    position: relative;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    color: var(--teks);
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: .88rem;
+    font-weight: 600;
+    transition: border-color .2s, background .2s;
+  }
+
+  .cart-btn:hover { border-color: var(--aksen); background: var(--panel); }
+
+  #cart-count {
+    background: var(--aksen);
+    color: #04120e;
+    border-radius: 20px;
+    padding: 1px 8px;
+    font-size: .72rem;
+    font-weight: 800;
+    margin-left: 4px;
+  }
+
+  /* HERO */
+  .hero { padding: 90px 0 70px; text-align: center; }
+
+  .hero .badge {
+    display: inline-block;
+    background: rgba(0,229,176,.10);
+    border: 1px solid rgba(0,229,176,.3);
+    color: var(--aksen);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    letter-spacing: -.5px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--aksen), var(--aksen-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero p { color: var(--redup); max-width: 560px; margin: 0 auto 30px; font-size: 1rem; }
+
+  .hero .cta {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--aksen), #00c79a);
+    color: #04120e;
+    padding: 14px 34px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: .95rem;
+    box-shadow: 0 8px 30px rgba(0,229,176,.25);
+    transition: transform .15s, box-shadow .15s;
+  }
+
+  .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,229,176,.35); }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    padding: 20px 0 70px;
+  }
+
+  .stat {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-align: center;
+  }
+
+  .stat b { display: block; font-size: 1.5rem; color: var(--aksen); margin-bottom: 4px; }
+  .stat small { color: var(--redup); font-size: .82rem; }
+
+  /* SECTION */
+  .section-head { text-align: center; margin-bottom: 42px; }
+
+  .section-head h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: -.3px;
+  }
+
+  .section-head h2 em {
+    font-style: normal;
+    color: var(--aksen);
+  }
+
+  .section-head p { color: var(--redup); margin-top: 8px; font-size: .95rem; }
+
+  /* PRODUK GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding-bottom: 80px;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px;
+    transition: border-color .2s, transform .2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--aksen), var(--aksen-2));
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  .card:hover { border-color: rgba(0,229,176,.4); transform: translateY(-3px); }
+  .card:hover::before { opacity: 1; }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .card-title h3 { font-size: 1.1rem; font-weight: 700; color: #fff; letter-spacing: .3px; }
+
+  .card-sub { color: var(--redup); font-size: .8rem; margin-bottom: 18px; }
+
+  .paket {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    transition: border-color .2s, background .2s;
+  }
+
+  .paket:hover { border-color: rgba(0,229,176,.3); }
+
+  .paket .durasi { font-size: .88rem; font-weight: 600; color: var(--teks); }
+
+  .paket .kanan { display: flex; align-items: center; gap: 12px; }
+
+  .paket .harga {
+    font-size: .9rem;
+    font-weight: 800;
+    color: var(--emas);
+    white-space: nowrap;
+  }
+
+  .paket button {
+    background: transparent;
+    border: 1px solid var(--aksen);
+    color: var(--aksen);
+    padding: 5px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: .75rem;
+    font-weight: 700;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+  }
+
+  .paket button:hover { background: var(--aksen); color: #04120e; }
+  .paket button.added { background: var(--aksen); color: #04120e; }
+
+  /* KONTAK */
+  .kontak-wrap { padding-bottom: 80px; }
+
+  .kontak-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .kontak-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
+  .kontak-card p { color: var(--redup); font-size: .9rem; margin-bottom: 22px; }
+
+  .kontak-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, #25d366, #1ebe5b);
+    color: #04120e;
+    text-decoration: none;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: .92rem;
+    transition: transform .15s;
+  }
+
+  .kontak-card a:hover { transform: translateY(-2px); }
+
+  .tt {
+    display: inline-block;
+    margin-top: 22px;
+    color: var(--redup);
+    font-size: .9rem;
+    letter-spacing: 1px;
+  }
+
+  .tt b { color: var(--aksen); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 30px 0;
+    text-align: center;
+    color: #5b6270;
+    font-size: .85rem;
+  }
+
+  footer .tt-foot { margin-top: 6px; color: var(--redup); font-size: .82rem; }
+  footer .tt-foot b { color: var(--aksen); }
+
+  /* MODAL KERANJANG */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .overlay.aktif { display: flex; }
+
+  .modal {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 26px;
+    animation: muncul .25s ease;
+  }
+
+  @keyframes muncul {
+    from { opacity: 0; transform: translateY(16px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .modal-head h3 { font-size: 1.2rem; font-weight: 800; }
+
+  .modal-head button {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    color: var(--redup);
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color .2s, border-color .2s;
+  }
+
+  .modal-head button:hover { color: var(--merah); border-color: var(--merah); }
+
+  .item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+
+  .item-row .info { flex: 1; min-width: 0; }
+  .item-row .info .nama { font-size: .88rem; font-weight: 700; color: #fff; }
+  .item-row .info .sub { font-size: .76rem; color: var(--redup); margin-top: 2px; }
+  .item-row .info .harga-kecil { font-size: .82rem; color: var(--emas); font-weight: 700; margin-top: 3px; }
+
+  .item-row .qty-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 3px 4px;
+  }
+
+  .item-row .qty-box button {
+    background: none;
+    border: none;
+    color: var(--aksen);
+    font-size: 1rem;
+    font-weight: 800;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .item-row .qty-box button:hover { background: rgba(0,229,176,.12); }
+
+  .item-row .qty-box span { font-size: .85rem; font-weight: 700; min-width: 16px; text-align: center; }
+
+  .item-row .hapus {
+    background: none;
+    border: none;
+    color: var(--merah);
+    cursor: pointer;
+    font-size: .95rem;
+    padding: 4px;
+  }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 6px;
+    border-top: 1px solid var(--line);
+    margin-top: 8px;
+  }
+
+  .total-row span:first-child { color: var(--redup); font-size: .9rem; }
+  .total-row span:last-child { color: var(--aksen); font-size: 1.3rem; font-weight: 800; }
+
+  .form-box { margin-top: 14px; display: flex; flex-direction: column; gap: 12px; }
+
+  .form-box label { font-size: .82rem; color: var(--redup); display: flex; flex-direction: column; gap: 6px; }
+
+  .form-box input, .form-box textarea {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    padding: 11px 13px;
+    color: var(--teks);
+    font-family: inherit;
+    font-size: .9rem;
+    transition: border-color .2s;
+  }
+
+  .form-box input:focus, .form-box textarea:focus { outline: none; border-color: var(--aksen); }
+
+  .btn-wa {
+    background: linear-gradient(90deg, #25d366, #1ebe5b);
+    color: #04120e;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: .92rem;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: transform .15s;
+  }
+
+  .btn-wa:hover { transform: translateY(-2px); }
+
+  .kosong { text-align: center; color: var(--redup); padding: 40px 0; font-size: .9rem; }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--aksen);
+    color: #04120e;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: .86rem;
+    z-index: 200;
+    opacity: 0;
+    transition: transform .25s, opacity .25s;
+    pointer-events: none;
+  }
+
+  .toast.aktif { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  @media (max-width: 620px) {
+    nav.menu a:not(.cart-btn) { display: none; }
+    .hero { padding: 60px 0 50px; }
+    .paket { flex-wrap: wrap; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">CARLZCHITZT <span>@carlzchitzt</span></div>
+    <nav class="menu">
+      <a href="#produk">Produk</a>
+      <a href="#kontak">Kontak</a>
+      <button class="cart-btn" onclick="bukaKeranjang()">Keranjang <span id="cart-count">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="badge">Premium Mods &amp; Cheats</div>
+    <h1>Upgrade Pengalaman Main<br>Kamu Bareng <em>Carlzchitzt</em></h1>
+    <p>Pilih paket sesuai kebutuhan. Proses cepat, langsung ke WhatsApp. Support responsif, harga bersahabat.</p>
+    <a href="#produk" class="cta">Lihat Semua Produk</a>
+  </div>
+</section>
+
+<div class="wrap stats">
+  <div class="stat"><b>10+</b><small>Jenis Produk</small></div>
+  <div class="stat"><b>50+</b><small>Paket Tersedia</small></div>
+  <div class="stat"><b>24/7</b><small>Support WhatsApp</small></div>
+  <div class="stat"><b>@carlzchitzt</b><small>Official Account</small></div>
+</div>
+
+<section id="produk">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Daftar <em>Produk</em></h2>
+      <p>Klik "Pilih" untuk menambahkan paket ke keranjang.</p>
+    </div>
+    <div class="grid" id="produk-grid"></div>
+  </div>
+</section>
+
+<section id="kontak" class="kontak-wrap">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Hubungi <em>Kami</em></h2>
+      <p>Ada pertanyaan? Langsung chat aja.</p>
+    </div>
+    <div class="kontak-card">
+      <h3>Carlzchitzt Official</h3>
+      <p>Respon cepat via WhatsApp. Pastikan nomor benar sebelum menghubungi.</p>
+      <a href="https://wa.me/601116484871" target="_blank">Chat via WhatsApp</a>
+      <div class="tt">Instagram: <b>@carlzchitzt</b></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2024 Carlzchitzt. Semua hak dilindungi.</p>
+    <div class="tt-foot">Official Account: <b>@carlzchitzt</b></div>
+  </div>
+</footer>
+
+<!-- MODAL KERANJANG & CHECKOUT -->
+<div class="overlay" id="overlay" onclick="if(event.target===this) tutupKeranjang()">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Keranjang &amp; Checkout</h3>
+      <button onclick="tutupKeranjang()">✕</button>
+    </div>
+
+    <div id="keranjang-isi"></div>
+
+    <div id="keranjang-kosong" class="kosong">Keranjang masih kosong.<br>Pilih paket dulu di daftar produk.</div>
+
+    <div id="form-area" style="display:none;">
+      <div class="total-row">
+        <span>Total</span>
+        <span id="total-harga">RM 0</span>
+      </div>
+      <form class="form-box" id="form-checkout">
+        <label>Nama Pembeli
+          <input type="text" id="input-nama" required placeholder="Nama kamu">
+        </label>
+        <label>Catatan (opsional)
+          <textarea id="input-catatan" rows="2" placeholder="Tambahan permintaan..."></textarea>
+        </label>
+        <button type="submit" class="btn-wa">Pesan via WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Ditambahkan ke keranjang</div>
+
+<script>
+  const WA_NUMBER = '601116484871';
+
+  const PRODUK = [
+    {
+      id: 'drip-apkmod',
+      nama: 'DRIP APKMOD',
+      sub: 'APK Mod',
+      paket: [
+        { durasi: '1 DAY', harga: 3 },
+        { durasi: '3 DAY', harga: 5 },
+        { durasi: '7 DAY', harga: 8 },
+        { durasi: '15 DAY', harga: 15 },
+        { durasi: '30 DAY', harga: 20 }
+      ]
+    },
+    {
+      id: 'drip-wire',
+      nama: 'DRIP WIRE',
+      sub: 'IOS / Android',
+      paket: [
+        { durasi: '6 JAM', harga: 2 },
+        { durasi: '12 JAM', harga: 4 },
+        { durasi: '1 DAY', harga: 6 },
+        { durasi: '7 DAY', harga: 15 },
+        { durasi: '30 DAY', harga: 23 }
+      ]
+    },
+    {
+      id: 'hg-basic',
+      nama: 'HG APKMOD BASIC',
+      sub: 'APK Mod Basic',
+      paket: [
+        { durasi: '1 DAY', harga: 3 },
+        { durasi: '7 DAY', harga: 5 },
+        { durasi: '10 DAY', harga: 7 },
+        { durasi: '30 DAY', harga: 12 }
+      ]
+    },
+    {
+      id: 'hg-brutal',
+      nama: 'HG APKMOD BRUTAL',
+      sub: 'APK Mod Brutal',
+      paket: [
+        { durasi: '1 DAY', harga: 4 },
+        { durasi: '7 DAY', harga: 13 },
+        { durasi: '10 DAY', harga: 15 },
+        { durasi: '30 DAY', harga: 23 }
+      ]
+    },
+    {
+      id: 'modz-syndicate',
+      nama: 'MODZ SYNDICATE',
+      sub: 'Premium Mod',
+      paket: [
+        { durasi: '1 DAY', harga: 3 },
+        { durasi: '3 DAY', harga: 5 },
+        { durasi: '7 DAY', harga: 8 },
+        { durasi: '15 DAY', harga: 10 },
+        { durasi: '30 DAY', harga: 16 },
+        { durasi: 'LIFETIME', harga: 25 }
+      ]
+    },
+    {
+      id: 'phantom',
+      nama: 'PHANTOM',
+      sub: 'Premium Mod',
+      paket: [
+        { durasi: '6 JAM', harga: 3 },
+        { durasi: '12 JAM', harga: 4 },
+        { durasi: '1 DAY', harga: 5 },
+        { durasi: '3 DAY', harga: 7 },
+        { durasi: '7 DAY', harga: 15 },
+        { durasi: '15 DAY', harga: 20 },
+        { durasi: '30 DAY', harga: 25 }
+      ]
+    },
+    {
+      id: 'migul-pro',
+      nama: 'MIGUL PRO',
+      sub: 'IOS',
+      paket: [
+        { durasi: '1 DAY', harga: 13 },
+        { durasi: '7 DAY', harga: 25 },
+        { durasi: '30 DAY', harga: 40 }
+      ]
+    },
+    {
+      id: 'migul-basic',
+      nama: 'MIGUL BASIC',
+      sub: 'IOS',
+      paket: [
+        { durasi: '1 DAY', harga: 10 },
+        { durasi: '7 DAY', harga: 23 },
+        { durasi: '30 DAY', harga: 35 }
+      ]
+    },
+    {
+      id: 'troll-modz',
+      nama: 'TROLL MODZ',
+      sub: 'Premium Mod',
+      paket: [
+        { durasi: '6 JAM', harga: 2 },
+        { durasi: '12 JAM', harga: 4 },
+        { durasi: '7 DAY', harga: 10 },
+        { durasi: '15 DAY', harga: 15 },
+        { durasi: '30 DAY', harga: 20 }
+      ]
+    },
+    {
+      id: 'modz-legacy',
+      nama: 'MOD SYNDICATE LEGACY',
+      sub: 'Legacy Series',
+      paket: [
+        { durasi: '4 JAM', harga: 1.5 },
+        { durasi: '1 DAY', harga: 2.5 },
+        { durasi: '3 DAY', harga: 5 },
+        { durasi: '7 DAY', harga: 9 },
+        { durasi: '15 DAY', harga: 12 },
+        { durasi: '30 DAY', harga: 16 }
+      ]
+    },
+    {
+      id: 'assist-android',
+      nama: 'ASSIST ANDROID',
+      sub: 'Android',
+      paket: [
+        { durasi: '4 JAM', harga: 2 },
+        { durasi: '1 DAY', harga: 3 },
+        { durasi: '3 DAY', harga: 5 },
+        { durasi: '7 DAY', harga: 9 },
+        { durasi: '15 DAY', harga: 12 },
+        { durasi: '30 DAY', harga: 16 }
+      ]
+    },
+    {
+      id: 'aimhack',
+      nama: 'AIMHACK',
+      sub: 'Premium Aim',
+      paket: [
+        { durasi: '3 JAM', harga: 1.5 },
+        { durasi: '6 JAM', harga: 2.5 },
+        { durasi: '12 JAM', harga: 3 },
+        { durasi: '1 DAY', harga: 4 },
+        { durasi: '3 DAY', harga: 7 },
+        { durasi: '7 DAY', harga: 15 },
+        { durasi: '15 DAY', harga: 20 },
+        { durasi: '30 DAY', harga: 25 }
+      ]
+    }
+  ];
+
+  function formatRM(n) {
+    const bulat = Number.isInteger(n) ? n : n.toFixed(2);
+    return 'RM ' + bulat;
+  }
+
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem('cart_carlzchitzt') || '[]'); }
+    catch (e) { return []; }
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem('cart_carlzchitzt', JSON.stringify(cart));
+    updateCount();
+  }
+
+  function updateCount() {
+    const total = getCart().reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+
+  function renderProduk() {
+    const grid = document.getElementById('produk-grid');
+    grid.innerHTML = PRODUK.map(p => `
+      <div class="card">
+        <div class="card-title"><h3>${p.nama}</h3></div>
+        <div class="card-sub">${p.sub}</div>
+        ${p.paket.map(pk => `
+          <div class="paket">
+            <span class="durasi">${pk.durasi}</span>
+            <div class="kanan">
+              <span class="harga">${formatRM(pk.harga)}</span>
+              <button data-pid="${p.id}" data-pnama="${p.nama}" data-durasi="${pk.durasi}" data-harga="${pk.harga}" onclick="tambahItem(this)">Pilih</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+  }
+
+  function tambahItem(btn) {
+    const pid = btn.dataset.pid;
+    const nama = btn.dataset.pnama;
+    const durasi = btn.dataset.durasi;
+    const harga = parseFloat(btn.dataset.harga);
+
+    const cart = getCart();
+    const key = pid + '|' + durasi;
+    const ada = cart.find(i => i.key === key);
+
+    if (ada) {
+      ada.qty += 1;
+    } else {
+      cart.push({ key, pid, nama, durasi, harga, qty: 1 });
+    }
+    saveCart(cart);
+    tampilToast(nama + ' ' + durasi + ' ditambahkan');
+    renderKeranjang();
+  }
+
+  function renderKeranjang() {
+    const cart = getCart();
+    const isi = document.getElementById('keranjang-isi');
+    const kosong = document.getElementById('keranjang-kosong');
+    const formArea = document.getElementById('form-area');
+
+    if (cart.length === 0) {
+      isi.innerHTML = '';
+      kosong.style.display = 'block';
+      formArea.style.display = 'none';
+      return;
+    }
+
+    kosong.style.display = 'none';
+    formArea.style.display = 'block';
+
+    isi.innerHTML = cart.map((i, idx) => `
+      <div class="item-row">
+        <div class="info">
+          <div class="nama">${i.nama}</div>
+          <div class="sub">Durasi: ${i.durasi}</div>
+          <div class="harga-kecil">${formatRM(i.harga)} x ${i.qty}</div>
+        </div>
+        <div class="qty-box">
+          <button onclick="ubahQty(${idx}, -1)">−</button>
+          <span>${i.qty}</span>
+          <button onclick="ubahQty(${idx}, 1)">+</button>
+        </div>
+        <button class="hapus" onclick="hapusItem(${idx})">✕</button>
+      </div>
+    `).join('');
+
+    const total = cart.reduce((s, i) => s + i.harga * i.qty, 0);
+    document.getElementById('total-harga').textContent = formatRM(total);
+  }
+
+  function ubahQty(idx, delta) {
+    const cart = getCart();
+    if (!cart[idx]) return;
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    saveCart(cart);
+    renderKeranjang();
+  }
+
+  function hapusItem(idx) {
+    const cart = getCart();
+    cart.splice(idx, 1);
+    saveCart(cart);
+    renderKeranjang();
+  }
+
+  function bukaKeranjang() {
+    renderKeranjang();
+    document.getElementById('overlay').classList.add('aktif');
+  }
+
+  function tutupKeranjang() {
+    document.getElementById('overlay').classList.remove('aktif');
+  }
+
+  function tampilToast(teks) {
+    const t = document.getElementById('toast');
+    t.textContent = teks;
+    t.classList.add('aktif');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => t.classList.remove('aktif'), 1800);
+  }
+
+  document.getElementById('form-checkout').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const cart = getCart();
+    if (cart.length === 0) return;
+
+    const nama = document.getElementById('input-nama').value.trim();
+    const catatan = document.getElementById('input-catatan').value.trim();
+    if (!nama) { tampilToast('Isi nama dulu ya'); return; }
+
+    const total = cart.reduce((s, i) => s + i.harga * i.qty, 0);
+
+    let msg = 'HAI CARLZCHITZT SAYA INGIN\nMEMBELI:\n\n';
+    cart.forEach(i => {
+      msg += 'PRODUK: ' + i.nama + '\n';
+      msg += 'DURASI: ' + i.durasi + '\n';
+      msg += 'HARGA: ' + formatRM(i.harga) + '\n';
+      msg += 'QTY: ' + i.qty + '\n';
+      msg += 'SUBTOTAL: ' + formatRM(i.harga * i.qty) + '\n\n';
+    });
+    msg += 'TOTAL: ' + formatRM(total) + '\n\n';
+    msg += 'NAMA PEMBELI: ' + nama + '\n';
+    if (catatan) msg += 'CATATAN: ' + catatan + '\n';
+    msg += '\nTOLONG DIPROSES DENGAN SEGERA';
+
+    const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+
+    localStorage.removeItem('cart_carlzchitzt');
+    updateCount();
+    renderKeranjang();
+    document.getElementById('input-nama').value = '';
+    document.getElementById('input-catatan').value = '';
+    tutupKeranjang();
+  });
+
+  renderProduk();
+  updateCount();
+</script>
+
+</body>
+</html>
